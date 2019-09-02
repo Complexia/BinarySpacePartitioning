@@ -15,23 +15,39 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     /**
      * Constructs empty graph.
      */
+    
+    private T[] tree = new T[1000];
+
     public SequentialRepresentation() {
-        // Implement me!
+        
+        //tree = new T[1000];
     } // end of SequentialRepresentation()
 
     @Override
     public void setRootNode(T nodeLabel) {
-        // Implement me!
+        
+        tree[1] = nodeLabel;
     } // end of setRootNode()
 
     @Override
     public void splitNode(T srcLabel, T leftChild, T rightChild) {
-        // Implement me!
+        
+        T currentNode = tree[1];
+        for(int i=1;i<tree.length;i++){
+            if(srcLabel.equals(currentNode)){
+                tree[i*2] = leftChild;
+                tree[i*2+1] = rightChild;
+            }
+            else{
+                currentNode = tree[i];
+            }
+        }
+
     } // end of splitNode
 
     @Override
     public boolean findNode(T nodeLabel) {
-        // Implement me!
+        
         return false;
     } // end of findNode
 
