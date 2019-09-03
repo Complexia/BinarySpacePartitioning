@@ -65,7 +65,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
         for(int i=0;i<tree.length;i++) {
         	if(tree[i] != null) {
         		if(tree[i].equals(nodeLabel)) {
-        			System.out.println("SD" + tree[4]);
+        			
             		return (String)tree[i/2];
             	}
         	}
@@ -90,7 +90,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     } // end of findChildren
 
     @Override
-    public void printInPreorder(PrintWriter writer) {
+    public void printInPreorder(PrintWriter writer) { //root left right
         for(int i=0;i<tree.length;i++) {
         	if(tree[i] != null) {
         		System.out.println(tree[i]);
@@ -100,12 +100,18 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     } // end of printInPreorder
 
     @Override
-    public void printInInorder(PrintWriter writer) {
-        // Implement me!
+    public void printInInorder(PrintWriter writer) { //left root right
+        
+    	for (int i=0;i<tree.length;i++) {
+    		if(tree[i] != null) {
+    			
+    		}
+    		
+    	}
     } // end of printInInorder
 
     @Override
-    public void printInPostorder(PrintWriter writer) {
+    public void printInPostorder(PrintWriter writer) { //left right root
         // Implement me!
     } // end of printInPostorder
 
