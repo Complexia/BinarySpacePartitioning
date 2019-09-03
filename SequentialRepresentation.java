@@ -102,12 +102,23 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     @Override
     public void printInInorder(PrintWriter writer) { //left root right
         
-    	for (int i=0;i<tree.length;i++) {
-    		if(tree[i] != null) {
-    			
+    	int cN = 1;
+    	while(tree[cN] != null) {
+    		if(tree[cN*2] != null) {
+    			cN = cN * 2;
     		}
-    		
+    		else {
+    			break;
+    		}
     	}
+    	while(cN != 1) {
+    		writer.print(tree[cN]);
+    		writer.print(tree[cN/2]);
+    		writer.print(tree[cN+1]);
+    		cN = cN/2;
+    	}
+    	
+    	
     } // end of printInInorder
 
     @Override
