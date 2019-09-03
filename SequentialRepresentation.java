@@ -36,14 +36,15 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
         
         T currentNode = tree[1];
         for(int i=1;i<tree.length;i++){
-            if(srcLabel.equals(currentNode)){
-                tree[i*2] = leftChild;
-                tree[i*2+1] = rightChild;
-                break;
-            }
-            else{
-                currentNode = tree[i];
-            }
+            
+        	if(tree[i] != null) {
+        		if(tree[i].equals(srcLabel)) {
+        			tree[i*2] = leftChild;
+                    tree[i*2+1] = rightChild;
+        		}
+        		
+        	}
+             
         }
 
     } // end of splitNode
@@ -64,6 +65,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
         for(int i=0;i<tree.length;i++) {
         	if(tree[i] != null) {
         		if(tree[i].equals(nodeLabel)) {
+        			System.out.println("SD" + tree[4]);
             		return (String)tree[i/2];
             	}
         	}
@@ -91,6 +93,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     public void printInPreorder(PrintWriter writer) {
         for(int i=0;i<tree.length;i++) {
         	if(tree[i] != null) {
+        		System.out.println(tree[i]);
         		writer.print(tree[i]);
         	}
         }

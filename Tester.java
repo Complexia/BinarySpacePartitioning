@@ -1,3 +1,4 @@
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 public class Tester {
@@ -9,8 +10,15 @@ public class Tester {
 		SequentialRepresentation sqR = new SequentialRepresentation();
 		sqR.setRootNode("A");
 		sqR.splitNode("A", "B", "C");
-		System.out.println(sqR.findParent("A"));
-		sqR.printInPreorder(new PrintWriter(OutputStream out));
+		sqR.splitNode("B", "D", "E");
+		System.out.println(sqR.findParent("E"));
+		try {
+			sqR.printInPreorder(new PrintWriter(new FileOutputStream("log.txt")));
+		}
+		catch(Exception e) {
+			System.out.println("fail");
+		}
+		
 		
 	}
 }
