@@ -10,17 +10,19 @@ import java.io.PrintWriter;
  * @author Jeffrey Chan, 2016.
  * @author Yongli Ren, 2019.
  */
+ 
+ 
 public class SequentialRepresentation<T> implements BSPTree<T> {
 
     /**
      * Constructs empty graph.
      */
     
-    private T[] tree = new T[1000];
+    private T[] tree;
 
     public SequentialRepresentation() {
         
-        //tree = new T[1000];
+        tree = (T[]) new Object[1000];
     } // end of SequentialRepresentation()
 
     @Override
@@ -37,6 +39,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
             if(srcLabel.equals(currentNode)){
                 tree[i*2] = leftChild;
                 tree[i*2+1] = rightChild;
+                break;
             }
             else{
                 currentNode = tree[i];
@@ -48,24 +51,49 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     @Override
     public boolean findNode(T nodeLabel) {
         
+    	for(int i=0;i<tree.length;i++) {
+    		if(tree[i].equals(nodeLabel)) {
+    			return true;
+    		}
+    	}
         return false;
     } // end of findNode
 
     @Override
     public String findParent(T nodeLabel) {
-        // Implement me!
+        for(int i=0;i<tree.length;i++) {
+        	if(tree[i] != null) {
+        		if(tree[i].equals(nodeLabel)) {
+            		return (String)tree[i/2];
+            	}
+        	}
+        	
+        }
         return null;
     } // end of findParent
 
     @Override
     public String findChildren(T nodeLabel) {
-        // Implement me!
+        
+    	for(int i=0;i<tree.length;i++) {
+        	if(tree[i] != null) {
+        		if(tree[i].equals(nodeLabel)) {
+            		return (String)tree[i*2];
+            	}
+        	}
+        	
+        }
+    	
         return null;
-    } // end of findParent
+    } // end of findChildren
 
     @Override
     public void printInPreorder(PrintWriter writer) {
-        // Implement me!
+        for(int i=0;i<tree.length;i++) {
+        	if(tree[i] != null) {
+        		writer.print(tree[i]);
+        	}
+        }
     } // end of printInPreorder
 
     @Override
