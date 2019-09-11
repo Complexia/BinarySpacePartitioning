@@ -22,7 +22,7 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
 
     public SequentialRepresentation() {
         
-        tree = (T[]) new Object[1000];
+        tree = (T[]) new Object[10000];
     } // end of SequentialRepresentation()
 
     @Override

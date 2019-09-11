@@ -12,38 +12,81 @@ import java.io.PrintWriter;
  */
 public class LinkedRepresentation<T> implements BSPTree<T> {
 
+    Node root;
+    private Node[] storage = new Node[10000];
+    private int index = 0;
+
     /**
      * Constructs empty tree.
      */
     public LinkedRepresentation() {
-        // Implement me!
+        root = new Node();
     } // end of LinkedRepresentation()
 
     @Override
     public void setRootNode(T nodeLabel) {
-        // Implement me!
+        root.setName(nodeLabel);
+        storage[index] = root;
+        index++;
+        
     } // end of setRootNode()
 
     @Override
     public void splitNode(T srcLabel, T leftChild, T rightChild) {
-        // Implement me!
+        
+        for(int i=0;i<storage.length;i++){
+            if(storage[i] != null){
+                
+
+                if(storage[i].getName().equals(srcLabel)){
+
+                    storage[i].setLeftChildNode(leftChild);
+                    storage[index + 1] = new Node(leftChild, srcLabel);
+                    storage[i].setRightChildNode(rightChild);
+                    storage[index + 2] = new Node(rightChild, srcLabel);
+                    System.out.println(storage[index + 1].getParentNode());
+                    index = index + 2;
+                }
+            }
+        } 
     } // end of splitNode
 
     @Override
     public boolean findNode(T nodeLabel) {
-        // Implement me!
+        for(int i=0;i<storage.length;i++){
+            if(storage[i] != null){
+                if(storage[i].getName().equals(nodeLabel)){
+                    return true;
+                }
+            }
+        }
         return false;
     } // end of findNode
 
     @Override
     public String findParent(T nodeLabel) {
-        // Implement me!
+        for(int i=0;i<storage.length;i++){
+            if(storage[i] != null){
+                if(storage[i].getName().equals(nodeLabel)){
+                    return (String)storage[i].getParentNode();
+                }
+            }
+        }
         return null;
     } // end of findParent
 
     @Override
     public String findChildren(T nodeLabel) {
-        // Implement me!
+        for(int i=0;i<storage.length;i++){
+            if(storage[i] != null){
+                if(storage[i].getName().equals(nodeLabel)){
+                    if(storage[i].getLeftChildNode() != null){
+                        return (String)storage[i].getLeftChildNode();
+                    }
+                    
+                }
+            }
+        }
         return null;
     } // end of findParent
 
