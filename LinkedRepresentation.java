@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class LinkedRepresentation<T> implements BSPTree<T> {
 
     Node root;
-    private Node[] storage = new Node[10000];
+    private Node[] storage = new Node[30000];
     private int index = 0;
 
     /**
@@ -44,7 +44,7 @@ public class LinkedRepresentation<T> implements BSPTree<T> {
                     storage[index + 1] = new Node(leftChild, srcLabel);
                     storage[i].setRightChildNode(rightChild);
                     storage[index + 2] = new Node(rightChild, srcLabel);
-                    System.out.println(storage[index + 1].getParentNode());
+                    
                     index = index + 2;
                 }
             }
