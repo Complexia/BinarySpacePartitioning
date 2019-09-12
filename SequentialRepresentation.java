@@ -53,9 +53,12 @@ public class SequentialRepresentation<T> implements BSPTree<T> {
     public boolean findNode(T nodeLabel) {
         
     	for(int i=0;i<tree.length;i++) {
-    		if(tree[i].equals(nodeLabel)) {
-    			return true;
-    		}
+            if(tree[i] != null){
+                if(tree[i].equals(nodeLabel)) {
+                return true;
+                }
+            }
+    		
     	}
         return false;
     } // end of findNode
