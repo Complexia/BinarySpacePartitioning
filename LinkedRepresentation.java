@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class LinkedRepresentation<T> implements BSPTree<T> {
 
     Node root;
-    private Node[] storage = new Node[30000];
+    private Node[] storage = new Node[100000000];
     private int index = 0;
 
     /**
@@ -46,6 +46,7 @@ public class LinkedRepresentation<T> implements BSPTree<T> {
                     storage[index + 2] = new Node(rightChild, srcLabel);
                     
                     index = index + 2;
+                    break;
                 }
             }
         } 
@@ -97,12 +98,41 @@ public class LinkedRepresentation<T> implements BSPTree<T> {
 
     @Override
     public void printInInorder(PrintWriter writer) {
-        // Implement me!
+        int cN = 1;
+        while(storage[cN] != null) {
+            if(storage[cN+1] != null) {
+                cN = cN + 1;
+            }
+            else {
+                break;
+            }
+        }
+        while(cN != 1) {
+            writer.print(storage[cN].getName()); //left
+            writer.print(storage[cN-1].getName()); //root
+            writer.print(storage[cN+1].getName()); //right
+            cN = cN-2;
+        }
     } // end of printInInorder
 
     @Override
     public void printInPostorder(PrintWriter writer) {
-        // Implement me!
+        int cN = 1;
+        while(storage[cN] != null) {
+            if(storage[cN+1] != null) {
+                cN = cN + 1;
+            }
+            else {
+                break;
+            }
+        }
+        while(cN != 1) {
+            writer.print(storage[cN].getName()); //left
+            writer.print(storage[cN+1].getName()); //right
+            writer.print(storage[cN-1].getName()); //root
+            
+            cN = cN-2;
+        }
     } // end of printInPostorder
 
 } // end of class LinkedRepresentation
